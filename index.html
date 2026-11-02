@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Third Wave Coffee — Beam Coffee</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Шапка сайта (Header) -->
+    <header class="header">
+        <div class="container header__container">
+            <a href="#" class="logo">Beam Coffee</a>
+            <nav class="nav">
+                <a href="#beans" class="nav__link">Beans</a>
+                <a href="#menu" class="nav__link">Menu</a>
+                <a href="#addresses" class="nav__link">Addresses</a>
+            </nav>
+            <button id="theme-toggle" class="btn btn--secondary" type="button">Dark Mode</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Главный экран (Hero Section) -->
+        <section class="hero">
+            <div class="container hero__container">
+                <div class="hero__content">
+                    <h1 class="hero__title">Fresh Roast. Honest Taste.</h1>
+                    <p class="hero__subtitle">Сезонное зерно спешелти обжарки от лучших фермерских хозяйств.</p>
+                    <a href="#beans" class="btn btn--primary">Выбрать кофе</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция карточек кофе (Grid Section) -->
+        <section id="beans" class="beans">
+            <div class="container">
+                <h2 class="section-title">Single Origin Beans</h2>
+                <div class="beans__grid">
+                    <article class="card">
+                        <div class="card__badge">Ethiopia</div>
+                        <h3 class="card__title">Yirgacheffe Bloom</h3>
+                        <p class="card__meta">Высота: 1900–2200м | Обработка: Мытая</p>
+                        <p class="card__desc">Ноты жасмина, бергамота и спелого персика.</p>
+                        <span class="card__price">1 400 ₸ / 250г</span>
+                    </article>
+
+                    <article class="card">
+                        <div class="card__badge">Colombia</div>
+                        <h3 class="card__title">Huila Pink Bourbon</h3>
+                        <p class="card__meta">Высота: 1800m | Обработка: Натуральная</p>
+                        <p class="card__desc">Сочная малина, грейпфрут и тростниковый сахар.</p>
+                        <span class="card__price">1 650 ₸ / 250г</span>
+                    </article>
+
+                    <article class="card">
+                        <div class="card__badge">Kenya</div>
+                        <h3 class="card__title">Nyeri AA</h3>
+                        <p class="card__meta">Высота: 1700–1800м | Обработка: Мытая</p>
+                        <p class="card__desc">Яркая черная смородина, красное яблоко и карамель.</p>
+                        <span class="card__price">1 800 ₸ / 250г</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <p>&copy; 2026 Third Wave Coffee. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+const themeToggleBtn = document.getElementById('theme-toggle');
+const htmlElem = document.documentElement;
+
+themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = htmlElem.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    htmlElem.setAttribute('data-theme', newTheme);
+    themeToggleBtn.textContent = newTheme === 'light' ? 'Dark Mode' : 'Light Mode';
+});
+
+/* Переменные для мульти-теминга (Light / Dark) */
+:root[data-theme="light"] {
+    --bg-color: #fcfbf9;
+    --card-bg: #ffffff;
+    --text-color: #2b2927;
+    --text-muted: #6b6661;
+    --accent-color: #c86d3b;
+    --border-color: #e6e2dd;
+}
+
+:root[data-theme="dark"] {
+    --bg-color: #1a1918;
+    --card-bg: #262422;
+    --text-color: #f2efeb;
+    --text-muted: #a6a099;
+    --accent-color: #e07a48;
+    --border-color: #3b3835;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-color);
+    z-index: 100;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.nav__link {
+    margin-left: 20px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Кнопка переключения темы */
+.btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn--primary {
+    background-color: var(--accent-color);
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn--secondary {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Hero Section */
+.hero {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero__title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero__subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* Grid Cards */
+.beans {
+    padding: 60px 0;
+}
+
+.section-title {
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+
+.beans__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card__badge {
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.card__title {
+    font-size: 1.3rem;
+    margin: 10px 0;
+}
+
+.card__meta {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.card__price {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+/* Footer */
+.footer {
+    border-top: 1px solid var(--border-color);
+    padding: 30px 0;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* Адаптив под мобильные (390px) */
+@media (max-width: 600px) {
+    .header__container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav__link {
+        margin: 0 10px;
+    }
+
+    .hero__title {
+        font-size: 2rem;
+    }
+}
